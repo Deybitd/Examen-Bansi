@@ -53,6 +53,31 @@ namespace FrontEnd_Examen.Controllers
             }
             return View();
         }
+        public async Task<IActionResult> Agregar(AgregarViewModel modelView)
+        {
+            if (ModelState.IsValid)
+            {   
+
+                if (modelView.idExamen != null && modelView.Descripcion != null && modelView.Nombre != null )
+                {
+                    ClsExamen repositorio = null;
+                    if (modelView.Metodo)
+                    {
+                        repositorio = new ClsExamen(modelView.Metodo, _configuration.GetConnectionString("API"));
+                    }
+                    else
+                    {
+                        repositorio = new ClsExamen(modelView.Metodo, _configuration.GetConnectionString("DB"));
+                    }
+
+                    modelView.data = new ExamenIDTO { idExamen = modelView.idExamen, Descripcion = modelView.Descripcion, Nombre = modelView.Nombre };
+                    var response = await repositorio.AgregarExamenAsync(modelView.data);
+                    modelView.response = response;
+                    return View(modelView);
+                }
+            }
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
