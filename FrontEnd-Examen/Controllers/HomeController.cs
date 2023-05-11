@@ -16,10 +16,9 @@ namespace FrontEnd_Examen.Controllers
 
         public async Task<IActionResult> IndexAsync()
         {
-
-            ClsExamen repositorio = new ClsExamen(false, "Server=localhost;Database=BdiExamen;User Id=DEVUSER;Password=5207;Encrypt=False;");
-            ExamenIDTO model = new ExamenIDTO { Id = 4, Descripcion = "prueba3", Nombre = "Prueba" };
-            var response = await repositorio.ConsultarExamenAsync(model);
+            ClsExamen repositorio = new ClsExamen(true, "https://localhost:7029/api/Examen");
+            ExamenIDTO model = new ExamenIDTO { idExamen = 4, Descripcion = "pruebaapi2", Nombre = "update" };
+            var response = await repositorio.EliminarExamenAsync(4);
             return View();
         }
 

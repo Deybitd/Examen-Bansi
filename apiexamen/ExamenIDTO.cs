@@ -9,7 +9,7 @@ namespace apiexamen
 {
     public class ExamenIDTO
     {   
-        public int Id { get; set; }
+        public int idExamen { get; set; }
         [StringLength(255)]
         public string Nombre { get; set; }
         [StringLength(255)]
