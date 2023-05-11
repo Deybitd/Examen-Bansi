@@ -1,0 +1,70 @@
+﻿@model ActualizarViewModel
+@{
+}
+
+<h1>Actualizar Registro de Base de Datos </h1>
+<div asp-validation-summary="All" class="text-danger"></div>
+<form method="post" class="mb-3">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div>
+                    <label asp-for="idExamen" class="form-label">Id Examen</label>
+                    <input type="text" asp-for="idExamen" class="form-control" />
+                </div>
+            </div>
+            <div class="col">
+                <div>
+                    <label asp-for="Nombre" class="form-label">Nombre</label>
+                    <input type="text" asp-for="Nombre" class="form-control" />
+                </div>
+            </div>
+            <div class="col">
+                <div>
+                    <label asp-for="Descripcion" class="form-label">Descripcion</label>
+                    <input type="text" asp-for="Descripcion" class="form-control" />
+                </div>
+            </div>
+            <div class="col">
+                <div>
+                    <label asp-for="Metodo" class="form-label">Usar WS</label>
+                    <input type="checkbox" asp-for="Metodo" />
+                </div>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-primary">
+        <tr>
+            <th>Status</th>
+            <th>Mensaje</th>
+
+        </tr>
+    </thead>
+    @if (Model != null)
+    {
+        @if (Model.response != null)
+        {
+            <tbody>
+
+                <tr>
+                    <td>
+                        @Model.response.status
+                    </td>
+                    <td>
+                        @Model.response.message
+                    </td>
+
+                </tr>
+
+            </tbody>
+        }
+    }
+</table>
